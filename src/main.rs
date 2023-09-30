@@ -43,7 +43,9 @@ async fn main() -> Result<()> {
 
     // serve API
     warp::serve(
-        routes::all_routes(pool, rate_limiter)
+        routes::boat::routes(pool.clone(), rate_limiter)
+            .or(routes::jwt::routes())
+            .or(routes::user::routes(pool))
             .with(warp::cors().allow_any_origin().allow_credentials(true))
             .recover(handle_rejection),
     )
