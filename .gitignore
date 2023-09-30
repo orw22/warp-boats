@@ -1,0 +1,8 @@
+debug/
+target/
+db/
+Cargo.lock
+config.toml
+**/*.rs.bk
+*.pdb
+.vscode/
