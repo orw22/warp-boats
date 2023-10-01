@@ -1,5 +1,4 @@
 mod config;
-mod consts;
 mod credit;
 mod db;
 mod errors;

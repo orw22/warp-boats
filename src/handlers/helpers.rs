@@ -1,4 +1,4 @@
-use crate::{consts::BEARER, db::SharedConnectionPool, errors::Error};
+use crate::{db::SharedConnectionPool, errors::Error};
 use diesel::{
     r2d2::{ConnectionManager, PooledConnection},
     SqliteConnection,
@@ -7,6 +7,8 @@ use warp::{
     http::header::{HeaderMap, HeaderValue, AUTHORIZATION},
     reject,
 };
+
+const BEARER: &'static str = "Bearer ";
 
 pub fn jwt_from_header(headers: &HeaderMap<HeaderValue>) -> Result<String, Error> {
     let auth_header = std::str::from_utf8(
